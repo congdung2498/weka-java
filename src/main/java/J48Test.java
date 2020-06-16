@@ -13,13 +13,13 @@ import weka.core.Instance;
  * Created on: Jul 1, 2017 Github link:
  * https://github.com/emara-geek/weka-example
  */
-public class Test {
+public class J48Test {
 
    private Instances trainingData;
 
     public static void main(String[] args) {
         try {
-            Test decisionTree = new Test("F:\\Data Mining\\BTL\\car.arff");
+            J48Test decisionTree = new J48Test("F:\\Data Mining\\BTL\\car.arff");
             J48 tree = decisionTree.performTraining();
             System.out.println(tree.toString());
             
@@ -41,7 +41,7 @@ public class Test {
         }
     }
 
-    public Test(String fileName) {
+    public J48Test(String fileName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             trainingData = new Instances(reader);
