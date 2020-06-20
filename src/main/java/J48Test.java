@@ -21,21 +21,16 @@ public class J48Test {
         try {
             J48Test decisionTree = new J48Test("F:\\Data Mining\\BTL\\car.arff");
             J48 tree = decisionTree.performTraining();
+            tree.setNumFolds(10);
+            tree.setUnpruned(false);
+            System.out.println("getNumFolds: " + tree.getNumFolds());           
             System.out.println(tree.toString());
-            
             Instance testInstance = decisionTree.
                     getTestInstance("vhigh", "vhigh","2","2","med","low");
             int result = (int) tree.classifyInstance(testInstance);
             String results = decisionTree.trainingData.attribute(6).value(result);
             System.out.println(
                     "Test with: " + testInstance + "  Result: " + results);
-
-//            testInstance = decisionTree.
-//                    getTestInstance("Paperback", "no", "historical");
-//            result = (int) tree.classifyInstance(testInstance);
-//            results = decisionTree.trainingData.attribute(3).value(result);
-//            System.out.println(
-//                    "Test with: " + testInstance + "  Result: " + results);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -53,8 +48,7 @@ public class J48Test {
 
     private J48 performTraining() {
         J48 j48 = new J48();
-        String[] options = {"-U"};
-//        Use unpruned tree. -U
+        String[] options = {};
         try {
             j48.setOptions(options);
             j48.buildClassifier(trainingData);
